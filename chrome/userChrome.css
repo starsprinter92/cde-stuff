@@ -1,0 +1,303 @@
+/* To make color changes, change the variables in both the userChrome AND userContent files */
+
+:root{
+/* NORMAL BROWSING COLORS */
+	--95grey:#c5b2a8;
+	--home-bground:#E5E5E5;
+	--3d-dark:#6a605b;
+	--3d-light: #e6ded9;
+	--urlbar-bg:#c5b2a8;
+	--button-colour:#0a0a0a;
+	--teal-light:#adced7;
+	--teal-dark:#244953;
+
+
+/* Defines the 3d effects. */
+	--tealconvex:inset -1px -2px var(--teal-dark),inset 1px 1px var(--teal-light);
+
+	--95convex:inset -1px -1px var(--3d-dark),inset 1px 1px var(--3d-light);
+	--95concave:inset -1px -1px var(--3d-light),inset 1px 1px var(--3d-dark);
+	}
+
+/* PRIVATE BROWSING COLORS */
+#main-window[privatebrowsingmode="temporary"]{
+	--95grey:#937baf;
+	--home-bground:#937baf;
+	--3d-darkest:#0a0a0a;
+	--3d-dark:#4a3178;
+	--3d-light:#a893c0;
+	--3d-lightest:#ded6e8;
+	--urlbar-bg:#4a3178;
+	--button-colour:#ffffff;
+	}
+
+
+
+
+.tabbrowser-tab[label^="New Tab"] .tab-icon-image {
+      content: url("ff-std-alt.svg") !important;
+}
+
+#nav-bar:not([tabs-hidden="true"]) {
+    box-shadow: 0px -1px 0px 0px grey !important;
+}
+.browser-toolbar{
+    background-color: var(--95grey) !important;
+
+}
+.tab-background[selected]{
+ 	box-shadow: var(--95convex)  !important;
+	border-radius:0 !important;
+    background-color: #a8978f !important;
+    background-image: none !important;
+     	box-shadow: var(--95concave)  !important;
+
+}
+.tab-background{
+    border-radius: 0px !important;
+     	box-shadow: var(--95convex)  !important;
+
+}
+.tab-content{
+    color: var(--button-colour) !important;
+}
+
+#TabsToolbar .tabs-newtab-button:hover {
+    border-radius:0 !important;
+}
+.tabs-newtab-button:hover .toolbarbutton-icon {
+   border-radius:0 !important;
+}
+#urlbar-background, #urlbar, .urlbar-background{
+	background-color:var(--urlbar-bg) !important;
+    outline: none !important;
+    border:none !important;
+    border-radius: 0px !important;
+    box-shadow: var(--95concave) !important;
+}
+#urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background, #searchbar:focus-within{
+    border:1px solid #000080 !important;
+}
+.toolbarbutton-1{
+    border-radius: 0px !important;
+    color: #0a0a0a !important;
+    fill: var(--button-colour) !important;
+}
+.toolbarbutton-icon{
+    border-radius: 0px !important;
+}
+.toolbarbutton-1 > .toolbarbutton-icon, toolbar .toolbarbutton-1 > .toolbarbutton-text, toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack{
+    border-radius: 0px !important; 
+}
+.toolbarbutton-1:hover{
+    border-radius: 0px !important;
+}
+.toolbar-items{
+    background-color: var(--95grey) !important;
+}
+.PanelUI-subView{
+    background-color: var(--95grey) !important;
+    box-shadow: var(--95convex) !important;
+   /* color: black; */
+}
+.cui-widget-panel, .panel-no-padding{
+    --panel-border-radius: 0px !important;
+}
+
+.autoscroller {
+  background-image: size_all.png !important;
+}
+#urlbar-searchmode-switcher {
+	background-color: transparent !important;
+}
+
+
+#toolbar-menubar {
+  background-color: #4991a6 !important; /* Replace with your color code */
+  color: white !important;
+   	box-shadow: var(--tealconvex)  !important;
+
+}
+
+/* Remove background highlight on non-selected hovered tabs */
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  background-color: transparent !important;
+}
+
+/* 1. The Outer Frame & Gutter Space */
+#browser {
+  border: 3px solid var(--95grey) !important;      /* Your flat outer frame */
+  background-color: var(--95grey) !important;      /* The gutter color */
+  padding: 2px !important;                          /* Spacing between frame and 3D part */
+}
+
+/* 2. The Inner 3D Borders (Applied to the content container) */
+.browserSidebarContainer {
+  border-top: 2px solid var(--3d-dark) !important;
+  border-left: 2px solid var(--3d-dark) !important;
+  border-bottom: 2px solid var(--3d-light) !important;
+  border-right: 2px solid var(--3d-light) !important;
+  background-color: var(--95grey) !important;
+}
+
+
+
+/* 3. Remove the native white background bleed beneath the 3D viewport */
+#appcontent,
+tabbrowser-tabbox,
+.browser-stack {
+  background-color: var(--95grey) !important;
+}
+/* 1. Remove the theme's structural content boundary lines */
+:root {
+  --chrome-content-separator-color: none !important;
+  --tabs-navbar-separator-color: transparent !important;
+}
+
+/* 2. Eliminate the hardcoded frame border wrapping the web window layout */
+.browserContainer {
+  border-top: 0px solid transparent !important;
+  border: none !important;
+}
+
+/* 3. Strip any residual shadow boundaries under the toolbar area */
+#navigator-toolbox {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix the 3D separator between the tab bar and nav-bar */
+#nav-bar:not([tabs-hidden="true"]), 
+#nav-bar {
+  /* 1. Overwrite the old flat gray box-shadow line entirely */
+  box-shadow: inset 0 1px 0 0 var(--3d-light) !important;
+  
+  /* 2. Apply the dark etched line directly above it */
+  border-top: 1px solid var(--3d-dark) !important;
+  
+  /* 3. Ensure no extra margins or borders clip the 3D illusion */
+  border-bottom: none !important;
+}
+
+/* 3D bevel just inside the outer Firefox window border */
+#main-window {
+  box-shadow:
+    inset 1px 1px var(--3d-light),
+    inset -1px -1px var(--3d-dark) !important;
+}
+
+/* Keep the bevel visible around the entire browser chrome */
+#navigator-toolbox {
+  box-shadow:
+    inset 1px 1px var(--3d-light),
+    inset -1px -1px var(--3d-dark) !important;
+}
+
+
+/* Force square corners throughout Firefox's UI */
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+/* URL bar and autocomplete dropdown */
+#urlbar,
+#urlbar-background,
+#urlbar-input-container,
+#urlbar-results,
+.urlbarView,
+.urlbarView-body-outer,
+.urlbarView-body-inner,
+.urlbarView-row,
+.urlbarView-row-inner,
+.urlbarView-button,
+.urlbarView-action,
+.urlbarView-favicon,
+.urlbarView-type-icon {
+    border-radius: 0 !important;
+}
+
+/* Toolbar buttons, tabs, and menus */
+.toolbarbutton-1,
+.toolbarbutton-icon,
+.tab-background,
+#TabsToolbar,
+menupopup,
+menucaption,
+menu,
+menuitem,
+.panel-arrowcontent,
+.panel-subview-body,
+.PanelUI-subView,
+.cui-widget-panel {
+    border-radius: 0 !important;
+}
+
+#main-window:not([id="toolbar-menubar"]) {
+  /* Your styles here */
+    box-shadow: var(--95concave) !important;
+
+}
+
+
+:root, #main-window {
+    position: relative !important;
+}
+
+/* Creates a border around the window frame that ignores the menu bar height */
+#main-window::before {
+    content: "";
+    position: absolute;
+    /* Keeps the border perfectly bound to the window edges */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Pushes the top border down exactly past the menu bar */
+    top: 34px; 
+    
+    /* Your Border Styles */
+    border-top: 1px solid var(--3d-light) !important;    /* Border under menu bar */
+    border-bottom: 1px solid var(--3d-dark) !important; /* Bottom window edge */
+    border-left: 1px solid var(--3d-light) !important;   /* Left window edge */
+    border-right: 1px solid var(--3d-dark) !important;  /* Right window edge */
+        
+    
+    pointer-events: none !important;
+    z-index: 99999 !important;
+}
+
+/* Optional adjustment: If your menu bar is taller or shorter than 30px, 
+   change the 'top' value above to match your theme height. */
+
+/* Move the Help menu to the far right of the Menu Bar */
+#helpMenu {
+  margin-left: auto !important;
+}
+/* Ensure the Menu Bar container expands full width and pushes Help to the right */
+#main-menubar {
+  display: flex !important;
+  width: 100% !important;
+}
+
+#helpMenu {
+  margin-left: auto !important;
+}
+
+
+/* Vertically center Firefox menu labels */
+#toolbar-menubar {
+    height: 35px !important;
+    min-height: 35px !important;
+}
+
+#main-menubar > menu {
+    position: relative !important;
+    top: 4px !important;
+}
+
+
+
+
+
+
